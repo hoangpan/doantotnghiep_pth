@@ -1,0 +1,48 @@
+<section>
+  <div class="page-header">
+   <p class="panel-title"><span style="color:#5bc0de;" 
+class="glyphicon glyphicon-list"> </span> Danh Sách Sản Phẩm</p>
+   <div class="header clearfix" style="margin-left: 700px; margin-top: -20px; "><a ui-sref="products.create"> 
+			    <span class="glyphicon glyphicon-plus"> </span>Thêm Mới Sản Phẩm</a></div>
+  </div>
+  <div class="list-group">
+   <table class="table table-striped">
+			<thead>
+			<tr>
+				<th>ID</th>
+			  <th>Tên Sản Phẩm</th>
+			  <th>Thuộc Danh Mục</th>
+			  <th>Giá Sản Phẩm</th>
+			  <th>Chiết Khấu</th>
+			  <th>Mô Tả Sản Phẩm</th>
+			  <th>Tags</th>
+			  <th>Trạng Thái</th>
+			  <th>Số Lượt Xem</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="product in vm.products" >
+				<td>{{ product._id }}</td>
+			  <td>{{ product.name }}</td>
+			  <td>{{ product.catalog_id }}</td>
+			  <td>{{ product.price }}</td>
+			  <td>{{ product.discount }}</td>
+			  <td>{{ product.description }}</td>
+			  <td>{{ product.tags }}</td>
+			  <td>{{ product.status }}</td>
+			  <td>{{ product.views }}</td>
+			  <td> 
+			    <a ui-sref="products.view({ productId: product._id })" class="btn btn-info"> Show  </a>
+			    <a ui-sref="Products.edit({ productId: product._id })" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+			  	<button type="button" class="btn btn-danger" data-ng-click="remove(product)" >
+						  <span class="glyphicon glyphicon-trash"> </span> Delete 
+					</button>
+			  </td>
+			</tr>
+			</tbody>
+		</table>		
+  </div>
+  <div class="alert alert-warning text-center" ng-if="vm.products.$resolved && !vm.products.length">
+    No Products yet, why don't you <a ui-sref="products.create">create one</a>?
+  </div>
+</section>

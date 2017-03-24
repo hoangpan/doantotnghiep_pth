@@ -1,0 +1,45 @@
+<section data-ng-controller="ArticlesController" data-ng-init="findOne()">
+  <div class="page-header">
+    <h1>Edit Article</h1>
+  </div>
+  <div class="col-md-12">
+    <form name="articleForm" class="form-horizontal" data-ng-submit="update()" novalidate>
+      <fieldset>
+        <div class="form-group">
+          <label class="control-label" for="title">Title</label>
+          <div class="controls">
+            <input name="title" type="text" data-ng-model="article.title" id="title" class="form-control" placeholder="Title" required>
+          </div>
+        </div>
+         <div class="form-group" show-errors>
+          <label for="title">Featured Image </label>
+          <button ng-show="article.articleImageURL==null || article.articleImageURL==''" type="button" class="btn btn-secondary" type="file"
+            ngf-select="uploadFiles($file, $invalidFiles)"
+            ng-model="article.articleImageURL" name="file" ngf-model-invalid="errorFiles"
+            accept="image/*" ngf-max-size="1MB">
+            Select Featured Image</button>
+          <div class="text-center" ng-show="article.articleImageURL" >
+            <img ng-src="{{article.articleImageURL}}" ngf-thumbnail="article.articleImageURL" class="thumb"/>
+          </div>
+          <div class="text-center" ng-show="article.articleImageURL">
+            <button type="button" class="btn btn-secondary" ng-click="article.articleImageURL = null" >Remove</button>
+          </div>
+          <div class="alert alert-danger" ng-show="articleForm.file.$error.maxSize">File too large
+                       {{errorFiles[0].size / 1000000|number:1}}MB: max 1M</div>
+        </div>
+        <div class="form-group">
+          <label class="control-label" for="content">Content</label>
+          <div class="controls">
+            <textarea name="content" data-ng-model="article.content" id="content" class="form-control" cols="30" rows="10" placeholder="Content"></textarea>
+          </div>
+        </div>
+        <div class="form-group">
+          <input type="submit" value="Update" class="btn btn-default">
+        </div>
+        <div data-ng-show="error" class="text-danger">
+          <strong data-ng-bind="error"></strong>
+        </div>
+      </fieldset>
+    </form>
+  </div>
+</section>
