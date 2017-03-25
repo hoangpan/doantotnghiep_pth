@@ -15,28 +15,28 @@ var ContactSchema = new Schema({
     default: '',
     trim: true
   },
-  user_name: {
+  name: {
     type: String,
     default: '',
-    required: 'Please fill Contact username',
+    required: 'Please fill Contact name',
     trim: true
   },
-  user_email: {
+  email: {
     type: String,
     default: '',
-    required: 'Please fill Contact useremail',
+    required: 'Please fill Contact email',
     trim: true
   },
-  user_phone: {
+  phone: {
     type: String,
     default: '',
-    required: 'Please fill Contact userphone',
+    required: 'Please fill Contact phone',
     trim: true
   },
-  comments: {
+  comment: {
     type: String,
     default: '',
-    required: 'Please fill Contact Comment',
+    required: 'Please fill Contact comment',
     trim: true
   },
   product: {

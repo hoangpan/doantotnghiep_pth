@@ -22,16 +22,15 @@ var ProductSchema = new Schema({
     required: 'Please fill Product name',
     trim: true
   },
+  //image: {
+    //type: String,
+    //default: '',
+    //trim: true
+  //},
   price: {
     type: String,
     default: '',
     required: 'Please fill Product price',
-    trim: true
-  },
-  description: {
-    type: String,
-    default: '',
-    required: 'Please fill Product description',
     trim: true
   },
   discount: {
@@ -40,9 +39,11 @@ var ProductSchema = new Schema({
     required: 'Please fill Product discount',
     trim: true
   },
-  image_link: {
-    type: String,
-    default: 'modules/products/img/default.png'
+  description: {
+  type: String,
+  default: '',
+  required: 'Please fill Product description',
+  trim: true
   },
   tags: {
     type: String,

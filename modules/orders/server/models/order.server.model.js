@@ -10,17 +10,12 @@ var mongoose = require('mongoose'),
  * Order Schema
  */
 var OrderSchema = new Schema({
+  customer_id: {
+    type: String,
+    default: '',
+    trim: true
+  },
   product_id: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  user_id: {
-    type: String,
-    default: '',
-    trim: true
-  },
-  transaction_id: {
     type: String,
     default: '',
     trim: true
@@ -31,10 +26,10 @@ var OrderSchema = new Schema({
     required: 'Please fill Order qty',
     trim: true
   },
-  unitPrice: {
+  price: {
     type: String,
     default: '',
-    required: 'Please fill Order unitPrice',
+    required: 'Please fill Order price',
     trim: true
   },
   status: {
@@ -43,13 +38,13 @@ var OrderSchema = new Schema({
     required: 'Please fill Order stt',
     trim: true
   },
+  customer: {
+    type: Schema.ObjectId,
+    ref: 'Customer'
+  },
   product: {
     type: Schema.ObjectId,
     ref: 'Product'
-  },
-  transaction: {
-    type: Schema.ObjectId,
-    ref: 'Transaction'
   },
   user: {
     type: Schema.ObjectId,

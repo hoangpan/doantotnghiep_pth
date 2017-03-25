@@ -10,39 +10,20 @@ var mongoose = require('mongoose'),
  * Transaction Schema
  */
 var TransactionSchema = new Schema({
-  user_id: {
+  customer_id: {
     type: String,
     default: '',
     trim: true
   },
-  user_name: {
+  order_id: {
     type: String,
     default: '',
-    required: 'Please fill Transaction name',
     trim: true
   },
-  user_email: {
+  total: {
     type: String,
     default: '',
-    required: 'Please fill Transaction email',
-    trim: true
-  },
-  user_phone: {
-    type: String,
-    default: '',
-    required: 'Please fill Transaction phone',
-    trim: true
-  },
-  sumQty: {
-    type: String,
-    default: '',
-    required: 'Please fill Transaction qty',
-    trim: true
-  },
-  totalAmount: {
-    type: String,
-    default: '',
-    required: 'Please fill Transaction Total',
+    required: 'Please fill Transaction total',
     trim: true
   },
   payment: {
@@ -62,6 +43,14 @@ var TransactionSchema = new Schema({
     default: '',
     required: 'Please fill Transaction stt',
     trim: true
+  },
+  order: {
+    type: Schema.ObjectId,
+    ref: 'Order'
+  },
+  customer: {
+    type: Schema.ObjectId,
+    ref: 'Customer'
   },
   user: {
     type: Schema.ObjectId,
