@@ -20,7 +20,7 @@ var TransactionSchema = new Schema({
     default: '',
     trim: true
   },
-  total: {
+  total_price: {
     type: String,
     default: '',
     required: 'Please fill Transaction total',

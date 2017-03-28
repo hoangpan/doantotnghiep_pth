@@ -5,15 +5,35 @@
   <div class="col-md-12">
     <form name="vm.form.orderForm" class="form-horizontal" ng-submit="vm.save(vm.form.orderForm.$valid)" novalidate>
       <fieldset>
+         <div class="form-group" show-errors>
+          <label class="control-label" for="customer_id">Thuộc Khách Hàng: </label>
+          <select name="customer_id"  ng-model="vm.order.customer_id" id="customer_id" class="form-control" required>
+            <option value="">--- Lựa chọn ---</option>
+            <option ng-repeat="customer in vm.customers" value="{{ customer.name}}">{{ customer.name }}</option>
+          </select>
+        </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.order.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.orderForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Order name is required.</p>
-          </div>
+          <label class="control-label" for="product_id">Thuộc Sản Phẩm: </label>
+          <select name="product_id"  ng-model="vm.order.product_id" id="product_id" class="form-control" required>
+            <option value="">--- Lựa chọn ---</option>
+            <option ng-repeat="product in vm.products" value="{{ product.name}}">{{ product.name }}</option>
+          </select>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="qty">Số Lượng: </label>
+          <input name="qty" type="text" ng-model="vm.order.qty" id="qty" class="form-control" placeholder="Số Lượng" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="price">Giá Theo Số Lượng: </label>
+          <input name="price" type="text" ng-model="vm.order.price" id="price" class="form-control" placeholder="Giá Theo Số Lượng" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="status">Trạng Thái</label>
+          <input name="status" type="text" ng-model="vm.order.status" id="status" class="form-control" placeholder="Trạng Thái" required>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.order._id ? 'Update' : 'Create'}}</button>
+          <a ui-sref="orders.list" class="btn btn-default"> Cancel</a>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

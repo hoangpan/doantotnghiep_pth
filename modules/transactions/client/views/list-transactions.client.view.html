@@ -1,20 +1,40 @@
 <section>
   <div class="page-header">
-    <h1>Transactions</h1>
+   <p class="panel-title"><span style="color:#5bc0de;" 
+class="glyphicon glyphicon-list"> </span>Giao Dịch</p>
+   <div class="header clearfix" style="margin-left: 700px; margin-top: -20px; "><a ui-sref="transactions.create"> 
+			    <span class="glyphicon glyphicon-plus"> </span>Thêm Mới Giao Dịch</a></div>
   </div>
   <div class="list-group">
-    <a ng-repeat="transaction in vm.transactions"
-       ui-sref="transactions.view({ transactionId: transaction._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="transaction.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="transaction.user" ng-bind="transaction.user.displayName"></span>
-        <span ng-if="!transaction.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="transaction.name"></h4>
-    </a>
+   <table class="table table-striped">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>Thuộc Khách Hàng</th>
+			  <th>Tổng Tiền Đơn Hàng</th>
+			  <th>Cổng Thanh Toán</th>
+			  <th>Phản Hôi Khách Hàng</th>
+			  <th>Trạng Thái</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="transaction in vm.transactions" >
+				<td>{{ transaction._id }}</td>
+				<td>{{ transaction.customer_id }}</td>
+				<td>{{ transaction.total_price }}</td>
+			  <td>{{ transaction.payment }}</td>
+			  <td>{{ transaction.feedback }}</td>
+			  <td>{{ transaction.status }}</td>
+			  <td> 
+			    <a ui-sref="transactions.view({ transactionId: transaction._id })" class="btn btn-info"> Show  </a>
+			    <a ui-sref="transactions.edit({ transactionId: transaction._id })" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+			  	<button type="button" class="btn btn-danger" ng-click="remove()" >
+						  <span class="glyphicon glyphicon-trash"> </span> Delete 
+					</button>
+			  </td>
+			</tr>
+			</tbody>
+		</table>		
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.transactions.$resolved && !vm.transactions.length">
     No Transactions yet, why don't you <a ui-sref="transactions.create">create one</a>?

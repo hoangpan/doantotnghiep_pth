@@ -19,19 +19,19 @@ var CustomerSchema = new Schema({
   email: {
     type: String,
     default: '',
-    required: 'Please fill Customer name',
+    required: 'Please fill Customer email',
     trim: true
   },
   phone: {
     type: String,
     default: '',
-    required: 'Please fill Customer name',
+    required: 'Please fill Customer phone',
     trim: true
   },
   address: {
     type: String,
     default: '',
-    required: 'Please fill Customer name',
+    required: 'Please fill Customer address',
     trim: true
   },
   created: {

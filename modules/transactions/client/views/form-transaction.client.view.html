@@ -6,14 +6,31 @@
     <form name="vm.form.transactionForm" class="form-horizontal" ng-submit="vm.save(vm.form.transactionForm.$valid)" novalidate>
       <fieldset>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.transaction.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.transactionForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Transaction name is required.</p>
-          </div>
+          <label class="control-label" for="customer_id">Thuộc Khách Hàng: </label>
+          <select name="customer_id"  ng-model="vm.transaction.customer_id" id="customer_id" class="form-control" required>
+            <option value="">--- Lựa chọn ---</option>
+            <option ng-repeat="customer in vm.customers" value="{{ customer.name}}">{{ customer.name }}</option>
+          </select>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="total_price">Tổng Tiền Đơn hàng: </label>
+          <input name="total_price" type="text" ng-model="vm.transaction.total_price" id="total_price" class="form-control" placeholder="Tổng Tiền Đơn Hàng" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="payment">Cổng Thanh Toán: </label>
+          <input name="payment" type="text" ng-model="vm.transaction.payment" id="payment" class="form-control" placeholder="Cổng Thanh Toán" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="feedback">Phản Hồi Khách Hàng: </label>
+          <input name="feedback" type="text" ng-model="vm.transaction.feedback" id="feedback" class="form-control" placeholder="Phản Hồi Khách Hàng" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="status">Trạng Thái: </label>
+          <input name="status" type="text" ng-model="vm.transaction.status" id="status" class="form-control" placeholder="Trạng Thái" required>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.transaction._id ? 'Update' : 'Create'}}</button>
+          <a ui-sref="orders.list" class="btn btn-default"> Cancel</a>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

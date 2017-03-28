@@ -6,9 +6,9 @@
     .module('transactions')
     .controller('TransactionsController', TransactionsController);
 
-  TransactionsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'transactionResolve'];
+  TransactionsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'transactionResolve', 'CustomersService'];
 
-  function TransactionsController ($scope, $state, $window, Authentication, transaction) {
+  function TransactionsController ($scope, $state, $window, Authentication, transaction, CustomersService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,6 +17,8 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    vm.customers = CustomersService.query();
 
     // Remove existing Transaction
     function remove() {

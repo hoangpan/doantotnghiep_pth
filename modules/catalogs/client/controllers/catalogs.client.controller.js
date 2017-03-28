@@ -24,7 +24,8 @@
     function remove() {
       if ($window.confirm('Are you sure you want to delete?')) {
         vm.catalog.$remove($state.go('catalogs.list'));
-      }
+      } 
+      //console.log('abc')
     }
 
 

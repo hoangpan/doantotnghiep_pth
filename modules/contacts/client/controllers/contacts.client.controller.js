@@ -6,9 +6,9 @@
     .module('contacts')
     .controller('ContactsController', ContactsController);
 
-  ContactsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'contactResolve'];
+  ContactsController.$inject = ['$scope', '$state', '$window', 'Authentication', 'contactResolve', 'ProductsService'];
 
-  function ContactsController ($scope, $state, $window, Authentication, contact) {
+  function ContactsController ($scope, $state, $window, Authentication, contact, ProductsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,6 +17,8 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+     vm.products = ProductsService.query();
 
     // Remove existing Contact
     function remove() {

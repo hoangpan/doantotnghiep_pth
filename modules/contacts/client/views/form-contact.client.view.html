@@ -5,15 +5,28 @@
   <div class="col-md-12">
     <form name="vm.form.contactForm" class="form-horizontal" ng-submit="vm.save(vm.form.contactForm.$valid)" novalidate>
       <fieldset>
+       <div class="form-group" show-errors>
+          <label class="control-label" for="product_id">Thuộc Sản Phẩm: </label>
+          <select name="product_id"  ng-model="vm.contact.product_id" id="product_id" class="form-control" required>
+            <option value="">--- Lựa chọn ---</option>
+            <option ng-repeat="product in vm.products" value="{{ product.name}}">{{ product.name }}</option>
+          </select>
+        </div>
         <div class="form-group" show-errors>
-          <label class="control-label" for="name">Name</label>
-          <input name="name" type="text" ng-model="vm.contact.name" id="name" class="form-control" placeholder="Name" required>
-          <div ng-messages="vm.form.contactForm.name.$error" role="alert">
-            <p class="help-block error-text" ng-message="required">Contact name is required.</p>
-          </div>
+          <label class="control-label" for="name">Tên Người Liên Hệ</label>
+          <input name="name" type="text" ng-model="vm.contact.name" id="name" class="form-control" placeholder="Tên Người Liên Hệ" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="email">Email</label>
+          <input name="email" type="text" ng-model="vm.contact.email" id="email" class="form-control" placeholder="Email" required>
+        </div>
+        <div class="form-group" show-errors>
+          <label class="control-label" for="comment">Comment</label>
+          <textarea name="comment" type="text" ng-model="vm.contact.comment" id="comment" class="form-control" placeholder="Comment" required></textarea>
         </div>
         <div class="form-group">
           <button type="submit" class="btn btn-default">{{vm.contact._id ? 'Update' : 'Create'}}</button>
+          <a ui-sref="contacts.list" class="btn btn-default"> Cancel</a>
         </div>
         <div ng-show="vm.error" class="text-danger">
           <strong ng-bind="vm.error"></strong>

@@ -20,6 +20,11 @@ var OrderSchema = new Schema({
     default: '',
     trim: true
   },
+  name: {
+    type: String,
+    default: '',
+    trim: true
+  },
   qty: {
     type: String,
     default: '',

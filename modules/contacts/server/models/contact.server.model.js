@@ -27,12 +27,6 @@ var ContactSchema = new Schema({
     required: 'Please fill Contact email',
     trim: true
   },
-  phone: {
-    type: String,
-    default: '',
-    required: 'Please fill Contact phone',
-    trim: true
-  },
   comment: {
     type: String,
     default: '',

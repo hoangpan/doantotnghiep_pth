@@ -1,20 +1,38 @@
 <section>
   <div class="page-header">
-    <h1>Customers</h1>
+   <p class="panel-title"><span style="color:#5bc0de;" 
+class="glyphicon glyphicon-list"> </span> Danh Sách Khách Hàng</p>
+   <div class="header clearfix" style="margin-left: 700px; margin-top: -20px; "><a ui-sref="customers.create"> 
+			    <span class="glyphicon glyphicon-plus"> </span>Thêm Mới Khách Hàng</a></div>
   </div>
   <div class="list-group">
-    <a ng-repeat="customer in vm.customers"
-       ui-sref="customers.view({ customerId: customer._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="customer.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="customer.user" ng-bind="customer.user.displayName"></span>
-        <span ng-if="!customer.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="customer.name"></h4>
-    </a>
+   <table class="table table-striped">
+			<thead>
+			<tr>
+				<th>ID</th>
+			  <th>Tên Khách Hàng</th>
+			  <th>Email</th>
+			  <th>Phone</th>
+			  <th>Address</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="customer in vm.customers" >
+				<td>{{ customer._id }}</td>
+			  <td>{{ customer.name }}</td>
+			  <td>{{ customer.email }}</td>
+			  <td>{{ customer.phone }}</td>
+			  <td>{{ customer.address }}</td>
+			  <td> 
+			    <a ui-sref="customers.view({ customerId: customer._id })" class="btn btn-info"> Show  </a>
+			    <a ui-sref="customers.edit({ customerId: customer._id })" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+			  	<button type="button" class="btn btn-danger" ng-click="remove()" >
+						  <span class="glyphicon glyphicon-trash"> </span> Delete 
+					</button>
+			  </td>
+			</tr>
+			</tbody>
+		</table>		
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.customers.$resolved && !vm.customers.length">
     No Customers yet, why don't you <a ui-sref="customers.create">create one</a>?

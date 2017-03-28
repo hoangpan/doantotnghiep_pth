@@ -6,9 +6,9 @@
     .module('orders')
     .controller('OrdersController', OrdersController);
 
-  OrdersController.$inject = ['$scope', '$state', '$window', 'Authentication', 'orderResolve'];
+  OrdersController.$inject = ['$scope', '$state', '$window', 'Authentication', 'orderResolve', 'CustomersService', 'ProductsService'];
 
-  function OrdersController ($scope, $state, $window, Authentication, order) {
+  function OrdersController ($scope, $state, $window, Authentication, order, CustomersService, ProductsService) {
     var vm = this;
 
     vm.authentication = Authentication;
@@ -17,6 +17,9 @@
     vm.form = {};
     vm.remove = remove;
     vm.save = save;
+
+    vm.customers = CustomersService.query();
+    vm.products = ProductsService.query();
 
     // Remove existing Order
     function remove() {

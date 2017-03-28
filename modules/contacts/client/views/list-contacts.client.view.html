@@ -1,20 +1,38 @@
 <section>
   <div class="page-header">
-    <h1>Contacts</h1>
+   <p class="panel-title"><span style="color:#5bc0de;" 
+class="glyphicon glyphicon-list"> </span> Danh Sách Liên Hệ</p>
+   <div class="header clearfix" style="margin-left: 700px; margin-top: -20px; "><a ui-sref="catalogs.create"> 
+			    <span class="glyphicon glyphicon-plus"> </span>Thêm Mới</a></div>
   </div>
   <div class="list-group">
-    <a ng-repeat="contact in vm.contacts"
-       ui-sref="contacts.view({ contactId: contact._id })"
-       class="list-group-item">
-      <small class="list-group-item-text">
-        Posted on
-        <span ng-bind="contact.created | date:'mediumDate'"></span>
-        by
-        <span ng-if="contact.user" ng-bind="contact.user.displayName"></span>
-        <span ng-if="!contact.user">Deleted User</span>
-      </small>
-      <h4 class="list-group-item-heading" ng-bind="contact.name"></h4>
-    </a>
+   <table class="table table-striped">
+			<thead>
+			<tr>
+				<th>ID</th>
+				<th>Sản Phẩm</th>
+			  <th>Tên Người Liên Hệ</th>
+			  <th>Email</th>
+			  <th>Comment</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr ng-repeat="contact in vm.contacts" >
+				<td>{{ contact._id }}</td>
+				<td>{{ contact.product_id }}</td>
+			  <td>{{ contact.name }}</td>
+			  <td>{{ contact.email }}</td>
+			  <td>{{ contact.comment }}</td>
+			  <td> 
+			    <a ui-sref="contacts.view({ contactId: contact._id })" class="btn btn-info"> Show  </a>
+			    <a ui-sref="contacts.edit({ contactId: contact._id })" class="btn btn-success"><span class="glyphicon glyphicon-edit"> </span> Edit  </a>
+			  	<button type="button" class="btn btn-danger" ng-click="remove()" >
+						  <span class="glyphicon glyphicon-trash"> </span> Delete 
+					</button>
+			  </td>
+			</tr>
+			</tbody>
+		</table>		
   </div>
   <div class="alert alert-warning text-center" ng-if="vm.contacts.$resolved && !vm.contacts.length">
     No Contacts yet, why don't you <a ui-sref="contacts.create">create one</a>?
